@@ -10,12 +10,11 @@
 
 int binary_tree_is_leaf(const binary_tree_t *node)
 {
-if (node == NULL)
+if (node != NULL)
 return (0);
-if (node->left || node->right != NULL)
-return (0);
-else
+if (node->left == NULL && node->right == NULL)
 return (1);
+return (0);
 }
 
 /**
@@ -45,9 +44,10 @@ return (1 + right);
  */
 int binary_tree_balance(const binary_tree_t *tree)
 {
+int left, right;
 if (tree == NULL)
 return (0);
-if (tree->left == NULL && tree->right != NULL)
-return (-1);
-return (binary_tree_height(tree->left) - binary_tree_height(tree->right));
+left = binary_tree_height(tree->left);
+right = binary_tree_height(tree->right);
+return (left - right);
 }
